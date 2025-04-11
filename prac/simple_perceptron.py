@@ -1,12 +1,14 @@
 #perceptron neural network
 
 import numpy as np
+import matplotlib.pyplot as plt
 
 
-w = np.matrix('-1; 0.5; -0.3')
-n = 1
+w = np.matrix('5; 1; 12')
+n = 1   
 E = 0
 epoch = 1000
+epoch_E =[]
 current_epoch = 0
 i = 0
 
@@ -35,6 +37,7 @@ while current_epoch < epoch:
         #calc error
         E = E + 0.5*(d[i] - y)**2
         print("epoch:", current_epoch, "sample:", i, "weights:", w.getT(), "error:", E)
+        epoch_E.append(E)
         i += 1
 
     if E == 0:
@@ -43,7 +46,20 @@ while current_epoch < epoch:
         break
     i = 0
     E = 0
+    
+    
     current_epoch += 1
+
+print(epoch_E)
+
+plt.plot(range(len(epoch_E)), epoch_E, '-')
+plt.xlabel("epoch")
+plt.ylabel("Error")
+plt.show()
+
+
+
+
 
 
 
